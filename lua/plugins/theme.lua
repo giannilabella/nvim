@@ -1,12 +1,24 @@
 return {
     {
-        "EdenEast/nightfox.nvim",
+        "folke/tokyonight.nvim",
         priority = 1000,
-        config = function()
-            vim.cmd.colorscheme("carbonfox")
-
-            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        opts = {
+            style = "night",
+            transparent = true,
+            terminal_colors = true,
+            styles ={
+                sidebars = "dark",
+                floats = "dark",
+            },
+            on_highlights = function(highlights, _)
+                highlights.LineNr = {
+                    fg = "#71839b",
+                }
+            end,
+        },
+        config = function(_, opts)
+            require("tokyonight").setup(opts)
+            vim.cmd.colorscheme("tokyonight")
         end,
     },
 }
